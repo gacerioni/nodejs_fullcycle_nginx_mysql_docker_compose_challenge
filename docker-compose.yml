@@ -1,12 +1,18 @@
 version: '3.8'
 services:
   app:
-    image: gacerioni/fullcycle_node:0.0.1
-    pull_policy: always
+    build: 
+      context: .
+      dockerfile: Dockerfile_nodejs
     ports:
       - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - db
+    environment:
+      - NODE_ENV=development
   db:
     image: mysql:8.0
     environment:
