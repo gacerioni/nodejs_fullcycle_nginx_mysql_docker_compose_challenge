@@ -2,13 +2,10 @@ FROM node:14
 
 WORKDIR /usr/src/app
 
+# Gabs here - just to ensure we handle the deps - Im not a nodejs dev lolo
 COPY package*.json ./
-
 RUN npm install
 
-COPY . .
-
-RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -o wait-for-it.sh
 RUN chmod +x ./wait-for-it.sh
 
 EXPOSE 3000
