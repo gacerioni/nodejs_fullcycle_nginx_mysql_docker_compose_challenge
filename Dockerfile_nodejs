@@ -2,11 +2,14 @@ FROM node:14
 
 WORKDIR /usr/src/app
 
-# Gabs here - just to ensure we handle the deps - Im not a nodejs dev lolo
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-RUN chmod +x /usr/src/app/wait-for-it.sh
-
+# Expose the port the app runs on
 EXPOSE 3000
-CMD ["./wait-for-it.sh", "db:3306", "--", "node", "app.js"]
+
+# Command to run the application
+CMD ["node", "app.js"]
